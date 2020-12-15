@@ -77,7 +77,11 @@ table.forEach(function (row) {
   // This regex looks for four digits in a row, hopefully it should be a year.
   // Might cause problems if a conference is named '22 instead of 2022.
   const regex = /((\b\d{4}\b))/;
-  const year = regex.exec(row[4])[0];
+  const regexResult = regex.exec(row[4]);
+  const year = [];
+  if (regexResult.length > 0) {
+    year = regexResult[1];
+  }
   // we add the year to each row of submission
   row.push(year);
 });
